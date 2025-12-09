@@ -1,3 +1,7 @@
+let glavniy = document.getElementById("glavniy")
+let body = document.body
+
+
 fetch("https://fakestoreapi.com/products",{
     method:"GET",
     headers:{
@@ -9,6 +13,15 @@ fetch("https://fakestoreapi.com/products",{
     return respons.json()
 }).then((date)=>{
     console.log(date)
+    date.forEach((soz)=>{
+        let div = document.createElement("div")
+        div.innerHTML = `
+        <h1>${soz.id}</h1>
+        <p>${soz.title}</p>
+        `
+
+        glavniy.appendChild(div)
+    })
 })
 
 fetch("https://fakestoreapi.com/products/12",{
@@ -52,7 +65,7 @@ fetch("https://fakestoreapi.com/products/3",{
     console.log(respons)
 })
 
-fetch("https://fakestoreapi.com/products",{
+fetch("https://fakestoreapi.com/products/12",{
     method:"PATCH",
     headers:{
         "Content-Type":"applicotion/json"
@@ -64,3 +77,4 @@ fetch("https://fakestoreapi.com/products",{
 .then((respons)=>{
     console.log(respons)
 })
+
